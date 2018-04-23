@@ -3,9 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:WorldQuiz"
              x:Class="WorldQuiz.MainPage">
+    <StackLayout Spacing="50">
+        <Label Text="World Quiz"
+               FontSize="20"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
 
-	<Label Text="Welcome to Xamarin.Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+        <StackLayout Spacing="80" VerticalOptions="FillAndExpand">
+            <Label Text="What is the capital of France?"
+                   HorizontalOptions="Center"  />
+        </StackLayout>
+        <StackLayout 
+                     VerticalOptions="FillAndExpand"
+                     Margin="10" Spacing="0">
+
+            <StackLayout Spacing="5"
+                         Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Text="Francia" />
+                <Button Text="Paris" />
+
+            </StackLayout>
+
+            <StackLayout Spacing="5"
+                         Orientation="Horizontal" HorizontalOptions="Center">
+
+                <Button Text="Georgia"/>
+                <Button Text="Florida" />
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+
 
 </ContentPage>
