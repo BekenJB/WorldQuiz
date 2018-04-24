@@ -9,13 +9,20 @@ namespace WorldQuiz
 {
 	public partial class App : Application
 	{
+        public static string _dB_PATH = string.Empty;
 		public App ()
 		{
 			InitializeComponent();
 
 			MainPage = new WorldQuiz.MainPage();
 		}
+        public App(string dBPath)
+        {
+            InitializeComponent();
 
+            _dB_PATH = dBPath;
+            MainPage = new WorldQuiz.MainPage();
+        }
 		protected override void OnStart ()
 		{
 			// Handle when your app starts

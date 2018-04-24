@@ -21,9 +21,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\Country.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Currency.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\CountryService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ICountryService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Helpers\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Services\" />
   </ItemGroup>
 </Project>

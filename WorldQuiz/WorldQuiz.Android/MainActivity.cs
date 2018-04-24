@@ -1,11 +1,8 @@
-﻿using System;
-
+﻿
 using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
+using System.IO;
 
 namespace WorldQuiz.Droid
 {
@@ -19,8 +16,12 @@ namespace WorldQuiz.Droid
 
             base.OnCreate(bundle);
 
+            string fileName = "Country_db.sqlite";
+            string fileLocation = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            string fileFullPath = Path.Combine(fileLocation, fileName);
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App());
+            LoadApplication(new App(fileFullPath));
         }
     }
 }
