@@ -14,5 +14,7 @@ namespace WorldQuiz.Models
         public string Capital { get; set; }
 
         public string Flag { get; set; }
+
+        public string Alpha3Code { get; set; }
     }
 }

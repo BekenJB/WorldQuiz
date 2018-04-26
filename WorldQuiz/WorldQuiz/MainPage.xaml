@@ -14,17 +14,17 @@
                    HorizontalOptions="Center"  />
         </StackLayout>
         <StackLayout 
-                     VerticalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand" x:Name="AnswerAreaLayout"
                      Margin="10" Spacing="0">
 
-            <StackLayout Spacing="5"
+            <StackLayout Spacing="5" x:Name="TopAnswerButtonsLayout"
                          Orientation="Horizontal" HorizontalOptions="Center">
-                <Button Text="Francia" />
+                <Button Text="France" HeightRequest="50" WidthRequest="100" Clicked="ValidateAnswers" />
                 <Button Text="Paris" />
 
             </StackLayout>
 
-            <StackLayout Spacing="5"
+            <StackLayout Spacing="5" x:Name="BottomAnswerButtonsLayout"
                          Orientation="Horizontal" HorizontalOptions="Center">
 
                 <Button Text="Georgia"/>

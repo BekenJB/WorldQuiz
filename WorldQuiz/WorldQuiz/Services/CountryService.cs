@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using WorldQuiz.Models;
 
 namespace WorldQuiz.Services
@@ -20,7 +22,7 @@ namespace WorldQuiz.Services
         /// <summary>
         /// TODO: Remove hard coded values.
         /// </summary>
-        string baseUrl = "https://restcountries.eu/rest/v2/";
+        string baseUrl = "http://restcountries.eu/rest/v2/";
 
         public async void GetAllCountriesFromAPIAsync()
         {
@@ -28,21 +30,46 @@ namespace WorldQuiz.Services
 
             string url = baseUrl + queryFilter;
 
-            HttpResponseMessage response = await client.GetAsync(new Uri(url));
+       
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(new Uri(url));
 
-            string responseBody = response.Content.ReadAsStringAsync().Result;
+                string responseBody = response.Content.ReadAsStringAsync().Result;
 
-            var countries = JsonConvert.DeserializeObject<List<Country>>(responseBody);
+                var countries = JsonConvert.DeserializeObject<List<Country>>(responseBody);
 
-            //Now let's insert the record
+                //Now let's insert the record
+
+                using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App._dB_PATH))
+                {
+                    conn.CreateTable<Country>();
+                    conn.Execute("DELETE FROM Country");
+                    conn.InsertAll(countries, true);
+
+                   
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
+        public List<Country> GetNextPossibleAnswers()
+        {
+            List<Country> countryResponse = new List<Country>();
+
 
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App._dB_PATH))
             {
                 conn.CreateTable<Country>();
-
-                conn.InsertAll(countries, true);
+                countryResponse = conn.Table<Country>().ToList().OrderBy(s => Guid.NewGuid()).Take(4).ToList();
             }
-            
+
+            return countryResponse;
         }
     }
 }
